@@ -1,7 +1,7 @@
 CPP = g++
 RUN = Lab1
 FLAGS = -Werror -Wpedantic -Wall
-OBJS = main.o loadBMP.o saveBMP.o
+OBJS = main.o bmpFuncs.o
 
 all: $(RUN)
 

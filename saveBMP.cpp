@@ -5,7 +5,7 @@ bool saveBMP(const std::string& filename, const std::vector<uint8_t>& imageData,
     std::ofstream file(filename, std::ios::binary | std::ios::out);
     if (!file.is_open())
     {
-        std::cerr << "Error opening file for saving!" << std::endl;
+        std::cout << "Error opening file for saving!" << std::endl;
         return false;
     }
 

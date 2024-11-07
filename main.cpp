@@ -1,5 +1,4 @@
-#include "loadBMP.h"
-#include "saveBMP.h"
+#include "bmp.h"
 
 int main()
 {
@@ -14,13 +13,6 @@ int main()
     {
         std::cout << "NO" << std::endl;
     }
-    std::string filename2 = "sample1_new.bmp";
-    if (saveBMP(filename2, buffer, width, height))
-    {
-        std::cout << "Yes" << std::endl;
-    }
-    else
-    {
-        std::cout << "NO" << std::endl;
-    }
+    
+   
 }
