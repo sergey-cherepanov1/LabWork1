@@ -1,18 +1,19 @@
-CPP = g++
+CXX = g++
 RUN = Lab1
 FLAGS = -Werror -Wpedantic -Wall
-OBJS = main.o bmpFuncs.o
+SRC = $(wildcard *.cpp)
+OBJS = $(SRC:.cpp=.o)
 
 all: $(RUN)
 
 $(RUN): $(OBJS)
-	$(CPP) $(FLAGS) $(OBJS) -o $@
+	$(CXX) $(OBJS) -o $@
 
 %.o: %.cpp
-	$(CPP) -c $<
+	$(CXX) -c $< $(FLAGS)
 
 clean:
-	rm *.o $(RUN)
+	rm -f $(OBJS) $(RUN)
 
 cleanall:
-	rm *.o *.cpp $(RUN)
+	rm -f $(OBJS) $(RUN)

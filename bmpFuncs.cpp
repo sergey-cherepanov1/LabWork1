@@ -1,5 +1,4 @@
 #include "bmp.h"
-#include <iomanip> 
 
 bool loadBMP(const std::string& filename, std::vector<uint8_t>& imageData, int& width, int& height)
 {
@@ -36,13 +35,6 @@ bool loadBMP(const std::string& filename, std::vector<uint8_t>& imageData, int& 
 
     // Reading image data
     file.read((char*)imageData.data(), imageSize);
-    int k = 0;
-    for (size_t i = 0; i < imageData.size(); ++i) {
-        std::cout << std::hex << std::setw(2) << std::setfill('0') << (int)imageData[i] << " ";
-        k++;
-        if (k % 32 == 0) {std::cout << '\n';}
-    }
-    std::cout << '\n';
     file.close();
     return true;
 }
@@ -86,16 +78,7 @@ void rotate90(std::vector<uint8_t>& imageData, int& width, int& height) {
 
     imageData = std::move(rotatedData);
     
-    int temp = width;
-    width = height;
-    height = temp;
-
-    int p = 0;
-    for (size_t i = 0; i < imageData.size(); ++i) {
-        std::cout << std::hex << std::setw(2) << std::setfill('0') << (int)imageData[i] << " ";
-        p++;
-        if (p % 16 == 0) { std::cout << '\n'; }
-    }
+    std::swap(height, width);
 }
 
 void rotate270(std::vector<uint8_t>& imageData, int& width, int& height)
@@ -115,16 +98,8 @@ void rotate270(std::vector<uint8_t>& imageData, int& width, int& height)
             rotatedData[newIndex + 2] = imageData[oldIndex + 2]; 
         }
     }
-    int p = 0;
-    for (size_t i = 0; i < rotatedData.size(); ++i) {
-        std::cout << std::hex << std::setw(2) << std::setfill('0') << (int)rotatedData[i] << " ";
-        p++;
-        if (p % 16 == 0) {std::cout << '\n';}
-    }
 
     imageData = std::move(rotatedData);
-    int t = width;
-    width = height;
-    height = t;
+    std::swap(height, width);
 
 }
