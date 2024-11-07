@@ -36,4 +36,5 @@ struct BMPInfoHeader
 bool loadBMP(const std::string& filename, std::vector<uint8_t>& imageData, int& width, int& height);
 bool saveBMP(const std::string& filename, const std::vector<uint8_t>& imageData, int width, int height);
 void rotate90(std::vector<uint8_t>& imageData, int& width, int& height);
+void rotate270(std::vector<uint8_t>& imageData, int& width, int& height);
 #endif
