@@ -1,3 +1,7 @@
+/* Sergey Cherepanov st129987@student.spbu.ru
+   LabWork1
+*/
+
 #include "bmp.h"
 #include "gaussian_blur.h"
 

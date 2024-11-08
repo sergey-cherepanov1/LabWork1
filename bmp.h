@@ -1,3 +1,7 @@
+/* Sergey Cherepanov st129987@student.spbu.ru
+   LabWork1
+*/
+
 #ifndef BMP_h
 #define BMP_h
 

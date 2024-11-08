@@ -1,3 +1,7 @@
+/* Sergey Cherepanov st129987@student.spbu.ru
+   LabWork1
+*/
+
 #include "bmp.h"
 
 bool load_bmp(const std::string& filename, std::vector<uint8_t>& image_data, int& width, int& height)

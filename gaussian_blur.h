@@ -1,3 +1,7 @@
+/* Sergey Cherepanov st129987@student.spbu.ru
+   LabWork1
+*/
+
 #ifndef GAUSSIAN_BLUR_H
 #define GAUSSIAN_BLUR_H
 

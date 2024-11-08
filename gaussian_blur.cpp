@@ -1,3 +1,7 @@
+/* Sergey Cherepanov st129987@student.spbu.ru
+   LabWork1
+*/
+
 #include "gaussian_blur.h"
 
 double gaussian_func(int x, int y, double sigma)
@@ -65,16 +69,22 @@ void gaussian_filter(std::vector<uint8_t>& image_data, int width, int height, in
                     if (pixel_x >= width) pixel_x = width - 1;
                     if (pixel_y >= height) pixel_y = height - 1;
 
+                    // Calculate the index of the pixel in the original image data
                     int pixel_index = (pixel_y * (width * 3 + padding) + pixel_x * 3);
+
+                    // Get the weight of the current kernel element
                     double weight = kernel[ky + center][kx + center];
 
+                    // Apply the kernel to the pixel's RGB values
                     new_blue += image_data[pixel_index] * weight;
                     new_green += image_data[pixel_index + 1] * weight;
                     new_red += image_data[pixel_index + 2] * weight;
                 }
             }
+            // Calculate the new pixel index in the filtered image data
             int new_pixel_index = (y * (width * 3 + padding) + x * 3);
 
+            // Store the new RGB values in the filtered image data
             filtered_data[new_pixel_index] = (uint8_t)(new_blue);
             filtered_data[new_pixel_index + 1] = (uint8_t)(new_green);
             filtered_data[new_pixel_index + 2] = (uint8_t)(new_red);
