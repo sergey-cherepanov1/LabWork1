@@ -35,6 +35,12 @@ struct BMPInfoHeader
 
 bool loadBMP(const std::string& filename, std::vector<uint8_t>& imageData, int& width, int& height);
 bool saveBMP(const std::string& filename, const std::vector<uint8_t>& imageData, int width, int height);
+
 void rotate90(std::vector<uint8_t>& imageData, int& width, int& height);
 void rotate270(std::vector<uint8_t>& imageData, int& width, int& height);
+
+double gaussianFunc(int x, int y, double sigma);
+std::vector<std::vector<double>> kernelMatrix(int size, double sigma);
+void applyGaussianFilter(std::vector<uint8_t>& imageData, int width, int height, int kernelSize, float sigma);
+
 #endif
