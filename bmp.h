@@ -41,6 +41,6 @@ void rotate270(std::vector<uint8_t>& imageData, int& width, int& height);
 
 double gaussianFunc(int x, int y, double sigma);
 std::vector<std::vector<double>> kernelMatrix(int size, double sigma);
-void applyGaussianFilter(std::vector<uint8_t>& imageData, int width, int height, int kernelSize, float sigma);
+void gaussianFilter(std::vector<uint8_t>& imageData, int width, int height, int kernelSize, double sigma);
 
 #endif
