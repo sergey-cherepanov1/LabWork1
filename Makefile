@@ -13,7 +13,7 @@ $(RUN): $(OBJS)
 	$(CXX) -c $< $(FLAGS)
 
 clean:
-	rm -f $(OBJS) $(RUN)
+	rm $(OBJS) $(RUN)
 
 cleanall:
-	rm -f $(OBJS) $(RUN)
+	rm $(OBJS) $(RUN)

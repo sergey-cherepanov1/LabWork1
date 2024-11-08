@@ -59,7 +59,7 @@ void rotate90(std::vector<uint8_t>& image_data, int& width, int& height)
     int padding = (4 - (width * 3) % 4) % 4;
     int new_padding = (4 - (height * 3) % 4) % 4;
 
-    std::vector<uint8_t> rotated_data((width * 3 + padding) * height);
+    std::vector<uint8_t> rotated_data((height * 3 + new_padding) * width);
 
     // Loop over each pixel and perform the rotation
     for (int j = 0; j < height; j++)
@@ -87,7 +87,7 @@ void rotate270(std::vector<uint8_t>& image_data, int& width, int& height)
     int padding = (4 - (width * 3) % 4) % 4;
     int new_padding = (4 - (height * 3) % 4) % 4;
 
-    std::vector<uint8_t> rotated_data((width * 3 + padding) * height);
+    std::vector<uint8_t> rotated_data((height * 3 + new_padding) * width);
 
     // Loop over each pixel and perform the rotation
     for (int i = 0; i < height; i++)
