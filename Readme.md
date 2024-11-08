@@ -1,4 +1,4 @@
-# Assignment 3
+# Lab Work 1
 ## Author
 Черепанов Сергей Владиславович, группа 24.Б81-мм
 ## Contacts
