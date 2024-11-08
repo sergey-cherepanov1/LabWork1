@@ -1,23 +1,24 @@
 #include "bmp.h"
+#include "gaussian_blur.h"
 
 int main()
 {
-    std::vector<uint8_t> imageData;
+    std::vector<uint8_t> image_data;
     int width, height;
 
-    if (!loadBMP("input.bmp", imageData, width, height))
+    if (!load_bmp("input.bmp", image_data, width, height))
     {
         std::cout << "Error loading image!" << std::endl;
         return -1;
     }
 
 
-    int kernelSize = 15;
+    int kernel_size = 15;
     double sigma = 3.0;
-    gaussianFilter(imageData, width, height, kernelSize, sigma);
+    gaussian_filter(image_data, width, height, kernel_size, sigma);
 
 
-    if (!saveBMP("output.bmp", imageData, width, height))
+    if (!save_bmp("output.bmp", image_data, width, height))
     {
         std::cout << "Error saving image!" << std::endl;
         return -1;

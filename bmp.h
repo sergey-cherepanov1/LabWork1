@@ -33,14 +33,9 @@ struct BMPInfoHeader
 
 #pragma pack(pop)
 
-bool loadBMP(const std::string& filename, std::vector<uint8_t>& imageData, int& width, int& height);
-bool saveBMP(const std::string& filename, const std::vector<uint8_t>& imageData, int width, int height);
-
-void rotate90(std::vector<uint8_t>& imageData, int& width, int& height);
-void rotate270(std::vector<uint8_t>& imageData, int& width, int& height);
-
-double gaussianFunc(int x, int y, double sigma);
-std::vector<std::vector<double>> kernelMatrix(int size, double sigma);
-void gaussianFilter(std::vector<uint8_t>& imageData, int width, int height, int kernelSize, double sigma);
+bool load_bmp(const std::string& filename, std::vector<uint8_t>& image_data, int& width, int& height);
+bool save_bmp(const std::string& filename, const std::vector<uint8_t>& image_data, int width, int height);
+void rotate90(std::vector<uint8_t>& image_data, int& width, int& height);
+void rotate270(std::vector<uint8_t>& image_data, int& width, int& height);
 
 #endif
