@@ -6,6 +6,7 @@
 #define BMP_h
 
 #include <iostream>
+#include <cstdint>
 #include <fstream>
 #include <vector>
 #include <string>
