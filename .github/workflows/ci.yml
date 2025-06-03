@@ -3,7 +3,7 @@ name: LabWork1
 on:
   push:
     branches:
-      - main
+      - parallel
   pull_request:
     branches:
       - main
