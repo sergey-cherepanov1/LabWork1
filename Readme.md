@@ -9,3 +9,5 @@ This project performs operations on BMP images, including rotations and applying
 make
 ## Run
 ./Lab1
+## Run experiment
+./Lab1 -experiment

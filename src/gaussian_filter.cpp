@@ -101,7 +101,7 @@ void BmpFile::gaussian_filter(int kernel_size, double sigma)
     std::vector<std::vector<double>> kernel = kernel_matrix(kernel_size, sigma);
     int padding = (4 - (width * 3) % 4) % 4;
     std::vector<uint8_t> filtered_data(image_data);
-    
+
     int center = kernel_size / 2;
 
     for (int y = 0; y < height; y++)
