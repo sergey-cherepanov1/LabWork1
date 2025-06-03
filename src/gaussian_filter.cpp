@@ -1,10 +1,27 @@
+/* Sergey Cherepanov st129987@student.spbu.ru
+   LabWork1
+*/
+
 #include "bmp.h"
 
+/**
+ * @brief Calculates the 2D Gaussian function value
+ * @param x X-coordinate offset from center
+ * @param y Y-coordinate offset from center
+ * @param sigma Standard deviation of the Gaussian distribution
+ * @return double The computed Gaussian weight value
+ */
 double BmpFile::gaussian_func(int x, int y, double sigma)
 {
     return (1.0 / (2 * M_PI * sigma * sigma)) * exp(-(x * x + y * y) / (2 * sigma * sigma));
 }
 
+/**
+ * @brief Generates a Gaussian kernel matrix
+ * @param size The size of the kernel (must be odd)
+ * @param sigma Standard deviation for the Gaussian distribution
+ * @return std::vector<std::vector<double>> The generated kernel matrix
+ */
 std::vector<std::vector<double>> BmpFile::kernel_matrix(int size, double sigma)
 {
     std::vector<std::vector<double>> kernel(size, std::vector<double>(size));
@@ -34,6 +51,16 @@ std::vector<std::vector<double>> BmpFile::kernel_matrix(int size, double sigma)
     return kernel;
 }
 
+/**
+ * @brief Applies a kernel to a single pixel
+ * @param x X-coordinate of the target pixel
+ * @param y Y-coordinate of the target pixel
+ * @param kernel The convolution kernel to apply
+ * @param center The center index of the kernel
+ * @param new_red [out] Accumulator for the new red component
+ * @param new_green [out] Accumulator for the new green component
+ * @param new_blue [out] Accumulator for the new blue component
+ */
 void BmpFile::apply_kernel_to_pixel(int x, int y, const std::vector<std::vector<double>>& kernel, int center, double& new_red, double& new_green, double& new_blue)
 {
     // Loop over the surrounding pixels in the kernel
@@ -64,12 +91,17 @@ void BmpFile::apply_kernel_to_pixel(int x, int y, const std::vector<std::vector<
     }
 }
 
+/**
+ * @brief Applies Gaussian blur to the entire image
+ * @param kernel_size The size of the convolution kernel (must be odd)
+ * @param sigma The standard deviation for the Gaussian blur
+ */
 void BmpFile::gaussian_filter(int kernel_size, double sigma)
 {
     std::vector<std::vector<double>> kernel = kernel_matrix(kernel_size, sigma);
     int padding = (4 - (width * 3) % 4) % 4;
     std::vector<uint8_t> filtered_data(image_data);
-    
+
     int center = kernel_size / 2;
 
     for (int y = 0; y < height; y++)

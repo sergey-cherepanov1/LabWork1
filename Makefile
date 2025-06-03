@@ -1,19 +1,23 @@
 CXX = g++
 RUN = Lab1
 FLAGS = -Werror -Wpedantic -Wall
-SRC = $(wildcard *.cpp)
-OBJS = $(SRC:.cpp=.o)
+OBJSDIR = objs
+SRC = $(wildcard src/*.cpp)
+OBJS = $(SRC:src/%.cpp=$(OBJSDIR)/%.o)
 
 all: $(RUN)
 
 $(RUN): $(OBJS)
 	$(CXX) $(OBJS) -o $@
 
-%.o: %.cpp
-	$(CXX) -c $< $(FLAGS)
+$(OBJSDIR)/%.o: src/%.cpp | $(OBJSDIR)
+	$(CXX) -c $< $(FLAGS) -o $@
+
+$(OBJSDIR):
+	mkdir $(OBJSDIR)
 
 clean:
-	rm $(OBJS) $(RUN)
+	rm -rf $(OBJSDIR) $(RUN)
 
 cleanall:
-	rm $(OBJS) $(RUN)
+	rm -rf $(OBJSDIR) $(RUN)

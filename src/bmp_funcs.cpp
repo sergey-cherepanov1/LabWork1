@@ -4,6 +4,12 @@
 
 #include "bmp.h"
 
+/**
+ * @brief Loads BMP image data from file
+ * @param filename Path to the BMP file to load
+ * @return true if file was loaded successfully
+ * @return false if file couldn't be opened or is invalid
+ */
 bool BmpFile::load(const std::string& filename)
 {
     std::ifstream file(filename, std::ios::binary | std::ios::in);
@@ -33,6 +39,12 @@ bool BmpFile::load(const std::string& filename)
     return true;
 }
 
+/**
+ * @brief Saves BMP image data to file
+ * @param filename Destination file path
+ * @return true if file was saved successfully
+ * @return false if file couldn't be opened for writing
+ */
 bool BmpFile::save(const std::string& filename) const
 {
     std::ofstream file(filename, std::ios::binary | std::ios::out);
@@ -53,6 +65,10 @@ bool BmpFile::save(const std::string& filename) const
     return true;
 }
 
+/**
+ * @brief Rotates image 90 degrees clockwise
+ * @details Reorganizes pixel data and updates width/height
+ */
 void BmpFile::rotate90()
 {
     int padding = (4 - (width * 3) % 4) % 4;
@@ -75,6 +91,10 @@ void BmpFile::rotate90()
     std::swap(height, width);
 }
 
+/**
+ * @brief Rotates image 270 degrees clockwise (90° counter-clockwise)
+ * @details Reorganizes pixel data and updates width/height
+ */
 void BmpFile::rotate270()
 {
     int padding = (4 - (width * 3) % 4) % 4;
