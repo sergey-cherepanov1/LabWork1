@@ -1,26 +1,160 @@
 \hypertarget{classBmpFile}{}\doxysection{Bmp\+File Class Reference}
 \label{classBmpFile}\index{BmpFile@{BmpFile}}
+
+
+Provides BMP image loading, manipulation and saving capabilities.  
+
+
+
+
+{\ttfamily \#include $<$bmp.\+h$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\mbox{\hyperlink{classBmpFile_a7cc366e287b4009291fac035cdf89211}{Bmp\+File}} (const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em Constructs \mbox{\hyperlink{classBmpFile}{Bmp\+File}} and loads specified image. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classBmpFile_a4c2a114c0c1b9e2ba513518464235c12}{load}} (const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em Loads BMP image from file. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classBmpFile_a0d8863c4f656b9decf56ff874328fc5e}{save}} (const std\+::string \&filename) const
+\begin{DoxyCompactList}\small\item\em Saves image to BMP file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBmpFile_ae9cfdf64239e42b755e04a25c85bc561}{rotate90}} ()
+\begin{DoxyCompactList}\small\item\em Rotates image 90 degrees clockwise. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBmpFile_a8c5094ac77f90a454f59046f078bbf3b}{rotate270}} ()
+\begin{DoxyCompactList}\small\item\em Rotates image 270 degrees clockwise (90° counter-\/clockwise) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBmpFile_a15520d2a0dd8eae945c4af3efc081d31}{gaussian\+\_\+filter}} (int kernel\+\_\+size, double sigma)
+\begin{DoxyCompactList}\small\item\em Applies Gaussian blur filter to image. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Provides BMP image loading, manipulation and saving capabilities. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classBmpFile_a7cc366e287b4009291fac035cdf89211}\label{classBmpFile_a7cc366e287b4009291fac035cdf89211}} 
-{\bfseries Bmp\+File} (const std\+::string \&filename)
-\item 
-\mbox{\Hypertarget{classBmpFile_a4c2a114c0c1b9e2ba513518464235c12}\label{classBmpFile_a4c2a114c0c1b9e2ba513518464235c12}} 
-bool {\bfseries load} (const std\+::string \&filename)
-\item 
-\mbox{\Hypertarget{classBmpFile_a0d8863c4f656b9decf56ff874328fc5e}\label{classBmpFile_a0d8863c4f656b9decf56ff874328fc5e}} 
-bool {\bfseries save} (const std\+::string \&filename) const
-\item 
-\mbox{\Hypertarget{classBmpFile_ae9cfdf64239e42b755e04a25c85bc561}\label{classBmpFile_ae9cfdf64239e42b755e04a25c85bc561}} 
-void {\bfseries rotate90} ()
-\item 
-\mbox{\Hypertarget{classBmpFile_a8c5094ac77f90a454f59046f078bbf3b}\label{classBmpFile_a8c5094ac77f90a454f59046f078bbf3b}} 
-void {\bfseries rotate270} ()
-\item 
+\index{BmpFile@{BmpFile}!BmpFile@{BmpFile}}
+\index{BmpFile@{BmpFile}!BmpFile@{BmpFile}}
+\doxysubsubsection{\texorpdfstring{BmpFile()}{BmpFile()}}
+{\footnotesize\ttfamily Bmp\+File\+::\+Bmp\+File (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs \mbox{\hyperlink{classBmpFile}{Bmp\+File}} and loads specified image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Path to BMP file to load \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classBmpFile_a15520d2a0dd8eae945c4af3efc081d31}\label{classBmpFile_a15520d2a0dd8eae945c4af3efc081d31}} 
-void {\bfseries gaussian\+\_\+filter} (int kernel\+\_\+size, double sigma)
-\end{DoxyCompactItemize}
+\index{BmpFile@{BmpFile}!gaussian\_filter@{gaussian\_filter}}
+\index{gaussian\_filter@{gaussian\_filter}!BmpFile@{BmpFile}}
+\doxysubsubsection{\texorpdfstring{gaussian\_filter()}{gaussian\_filter()}}
+{\footnotesize\ttfamily void Bmp\+File\+::gaussian\+\_\+filter (\begin{DoxyParamCaption}\item[{int}]{kernel\+\_\+size,  }\item[{double}]{sigma }\end{DoxyParamCaption})}
+
+
+
+Applies Gaussian blur filter to image. 
+
+Applies Gaussian blur to the entire image.
+
+
+\begin{DoxyParams}{Parameters}
+{\em kernel\+\_\+size} & Size of convolution kernel (must be odd) \\
+\hline
+{\em sigma} & Standard deviation for Gaussian function\\
+\hline
+{\em kernel\+\_\+size} & The size of the convolution kernel (must be odd) \\
+\hline
+{\em sigma} & The standard deviation for the Gaussian blur \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classBmpFile_a4c2a114c0c1b9e2ba513518464235c12}\label{classBmpFile_a4c2a114c0c1b9e2ba513518464235c12}} 
+\index{BmpFile@{BmpFile}!load@{load}}
+\index{load@{load}!BmpFile@{BmpFile}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily bool Bmp\+File\+::load (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})}
+
+
+
+Loads BMP image from file. 
+
+Loads BMP image data from file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Path to BMP file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if loading succeeded 
+
+false if loading failed
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Path to the BMP file to load \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if file was loaded successfully 
+
+false if file couldn\textquotesingle{}t be opened or is invalid 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBmpFile_a8c5094ac77f90a454f59046f078bbf3b}\label{classBmpFile_a8c5094ac77f90a454f59046f078bbf3b}} 
+\index{BmpFile@{BmpFile}!rotate270@{rotate270}}
+\index{rotate270@{rotate270}!BmpFile@{BmpFile}}
+\doxysubsubsection{\texorpdfstring{rotate270()}{rotate270()}}
+{\footnotesize\ttfamily void Bmp\+File\+::rotate270 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Rotates image 270 degrees clockwise (90° counter-\/clockwise) 
+
+Reorganizes pixel data and updates width/height \mbox{\Hypertarget{classBmpFile_ae9cfdf64239e42b755e04a25c85bc561}\label{classBmpFile_ae9cfdf64239e42b755e04a25c85bc561}} 
+\index{BmpFile@{BmpFile}!rotate90@{rotate90}}
+\index{rotate90@{rotate90}!BmpFile@{BmpFile}}
+\doxysubsubsection{\texorpdfstring{rotate90()}{rotate90()}}
+{\footnotesize\ttfamily void Bmp\+File\+::rotate90 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Rotates image 90 degrees clockwise. 
+
+Reorganizes pixel data and updates width/height \mbox{\Hypertarget{classBmpFile_a0d8863c4f656b9decf56ff874328fc5e}\label{classBmpFile_a0d8863c4f656b9decf56ff874328fc5e}} 
+\index{BmpFile@{BmpFile}!save@{save}}
+\index{save@{save}!BmpFile@{BmpFile}}
+\doxysubsubsection{\texorpdfstring{save()}{save()}}
+{\footnotesize\ttfamily bool Bmp\+File\+::save (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption}) const}
+
+
+
+Saves image to BMP file. 
+
+Saves BMP image data to file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Destination file path \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if saving succeeded 
+
+false if saving failed
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Destination file path \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if file was saved successfully 
+
+false if file couldn\textquotesingle{}t be opened for writing 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

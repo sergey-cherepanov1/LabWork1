@@ -84,56 +84,68 @@ $(function() {
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;cmath&gt;</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classBmpFile.html">   15</a></span>&#160;<span class="keyword">class </span><a class="code" href="classBmpFile.html">BmpFile</a></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="classBmpFile.html">BmpFile</a>(<span class="keyword">const</span> std::string&amp; filename) { load(filename); }</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">bool</span> load(<span class="keyword">const</span> std::string&amp; filename);</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">bool</span> save(<span class="keyword">const</span> std::string&amp; filename) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">void</span> rotate90();</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">void</span> rotate270();</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">void</span> gaussian_filter(<span class="keywordtype">int</span> kernel_size, <span class="keywordtype">double</span> sigma);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">    #pragma pack(push, 1)</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">struct </span>BMPFileHeader</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        uint16_t file_type = 0x4D42; <span class="comment">// File type BM is 0x4D42</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        uint32_t file_size = 0;      <span class="comment">// Total file size</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        uint16_t reserved1 = 0;      <span class="comment">// Reserved field</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        uint16_t reserved2 = 0;      <span class="comment">// Reserved field</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        uint32_t offset_data = 54;   <span class="comment">// The offset in the file where image data begins</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    };</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">struct </span>BMPInfoHeader</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    {</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        uint32_t header_size = 40;  <span class="comment">// Header size, 40 bytes</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        int32_t width = 0;          <span class="comment">// Image width in pixels</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        int32_t height = 0;         <span class="comment">// Image height in pixels</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        uint16_t colour_planes = 1; <span class="comment">// Number of color planes, always 1</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        uint16_t bits_per_pixel = 24; <span class="comment">// Bits per pixel (usually 24-bit)</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        uint32_t compression = 0;   <span class="comment">// Compression method (0 means no compression)</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        uint32_t image_size = 0;    <span class="comment">// Image size in bytes</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        int32_t x_resolution = 0;   <span class="comment">// Horizontal resolution (not used)</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        int32_t y_resolution = 0;   <span class="comment">// Vertical resolution (not used)</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        uint32_t colours = 0;       <span class="comment">// Number of colors in the palette (0 if bpp &gt; 8)</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        uint32_t important_colours = 0; <span class="comment">// Number of important colors (0 usually)</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    };</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">    #pragma pack(pop)</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    BMPFileHeader file_header;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    BMPInfoHeader info_header;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    std::vector&lt;uint8_t&gt; image_data;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">int</span> width, height;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">double</span> gaussian_func(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">double</span> sigma);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    std::vector&lt;std::vector&lt;double&gt;&gt; kernel_matrix(<span class="keywordtype">int</span> size, <span class="keywordtype">double</span> sigma);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> apply_kernel_to_pixel(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keyword">const</span> std::vector&lt;std::vector&lt;double&gt;&gt;&amp; kernel, <span class="keywordtype">int</span> center, <span class="keywordtype">double</span>&amp; new_red, <span class="keywordtype">double</span>&amp; new_green, <span class="keywordtype">double</span>&amp; new_blue);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;};</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aclassBmpFile_html"><div class="ttname"><a href="classBmpFile.html">BmpFile</a></div><div class="ttdef"><b>Definition:</b> bmp.h:16</div></div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classBmpFile.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="classBmpFile.html">BmpFile</a></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classBmpFile.html#a7cc366e287b4009291fac035cdf89211">   26</a></span>&#160;    <a class="code" href="classBmpFile.html#a7cc366e287b4009291fac035cdf89211">BmpFile</a>(<span class="keyword">const</span> std::string&amp; filename) { <a class="code" href="classBmpFile.html#a4c2a114c0c1b9e2ba513518464235c12">load</a>(filename); }</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classBmpFile.html#a4c2a114c0c1b9e2ba513518464235c12">load</a>(<span class="keyword">const</span> std::string&amp; filename);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classBmpFile.html#a0d8863c4f656b9decf56ff874328fc5e">save</a>(<span class="keyword">const</span> std::string&amp; filename) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classBmpFile.html#ae9cfdf64239e42b755e04a25c85bc561">rotate90</a>();</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classBmpFile.html#a8c5094ac77f90a454f59046f078bbf3b">rotate270</a>();</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classBmpFile.html#a15520d2a0dd8eae945c4af3efc081d31">gaussian_filter</a>(<span class="keywordtype">int</span> kernel_size, <span class="keywordtype">double</span> sigma);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">    #pragma pack(push, 1)</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">struct </span>BMPFileHeader</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        uint16_t file_type = 0x4D42; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        uint32_t file_size = 0;      </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        uint16_t reserved1 = 0;      </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        uint16_t reserved2 = 0;      </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        uint32_t offset_data = 54;   </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    };</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keyword">struct </span>BMPInfoHeader</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    {</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        uint32_t header_size = 40;  </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        int32_t width = 0;          </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        int32_t height = 0;         </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        uint16_t colour_planes = 1; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        uint16_t bits_per_pixel = 24; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        uint32_t compression = 0;   </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        uint32_t image_size = 0;    </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        int32_t x_resolution = 0;   </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        int32_t y_resolution = 0;   </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        uint32_t colours = 0;       </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        uint32_t important_colours = 0; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    };</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">    #pragma pack(pop)</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    BMPFileHeader file_header; </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    BMPInfoHeader info_header; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    std::vector&lt;uint8_t&gt; image_data; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordtype">int</span> width, height; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordtype">double</span> gaussian_func(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">double</span> sigma);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    std::vector&lt;std::vector&lt;double&gt;&gt; kernel_matrix(<span class="keywordtype">int</span> size, <span class="keywordtype">double</span> sigma);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordtype">void</span> apply_kernel_to_pixel(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keyword">const</span> std::vector&lt;std::vector&lt;double&gt;&gt;&amp; kernel, <span class="keywordtype">int</span> center, <span class="keywordtype">double</span>&amp; new_red, <span class="keywordtype">double</span>&amp; new_green, <span class="keywordtype">double</span>&amp; new_blue);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;};</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassBmpFile_html"><div class="ttname"><a href="classBmpFile.html">BmpFile</a></div><div class="ttdoc">Provides BMP image loading, manipulation and saving capabilities.</div><div class="ttdef"><b>Definition:</b> bmp.h:20</div></div>
+<div class="ttc" id="aclassBmpFile_html_a0d8863c4f656b9decf56ff874328fc5e"><div class="ttname"><a href="classBmpFile.html#a0d8863c4f656b9decf56ff874328fc5e">BmpFile::save</a></div><div class="ttdeci">bool save(const std::string &amp;filename) const</div><div class="ttdoc">Saves image to BMP file.</div><div class="ttdef"><b>Definition:</b> bmp_funcs.cpp:48</div></div>
+<div class="ttc" id="aclassBmpFile_html_a15520d2a0dd8eae945c4af3efc081d31"><div class="ttname"><a href="classBmpFile.html#a15520d2a0dd8eae945c4af3efc081d31">BmpFile::gaussian_filter</a></div><div class="ttdeci">void gaussian_filter(int kernel_size, double sigma)</div><div class="ttdoc">Applies Gaussian blur filter to image.</div><div class="ttdef"><b>Definition:</b> gaussian_filter.cpp:99</div></div>
+<div class="ttc" id="aclassBmpFile_html_a4c2a114c0c1b9e2ba513518464235c12"><div class="ttname"><a href="classBmpFile.html#a4c2a114c0c1b9e2ba513518464235c12">BmpFile::load</a></div><div class="ttdeci">bool load(const std::string &amp;filename)</div><div class="ttdoc">Loads BMP image from file.</div><div class="ttdef"><b>Definition:</b> bmp_funcs.cpp:13</div></div>
+<div class="ttc" id="aclassBmpFile_html_a7cc366e287b4009291fac035cdf89211"><div class="ttname"><a href="classBmpFile.html#a7cc366e287b4009291fac035cdf89211">BmpFile::BmpFile</a></div><div class="ttdeci">BmpFile(const std::string &amp;filename)</div><div class="ttdoc">Constructs BmpFile and loads specified image.</div><div class="ttdef"><b>Definition:</b> bmp.h:26</div></div>
+<div class="ttc" id="aclassBmpFile_html_a8c5094ac77f90a454f59046f078bbf3b"><div class="ttname"><a href="classBmpFile.html#a8c5094ac77f90a454f59046f078bbf3b">BmpFile::rotate270</a></div><div class="ttdeci">void rotate270()</div><div class="ttdoc">Rotates image 270 degrees clockwise (90° counter-clockwise)</div><div class="ttdef"><b>Definition:</b> bmp_funcs.cpp:98</div></div>
+<div class="ttc" id="aclassBmpFile_html_ae9cfdf64239e42b755e04a25c85bc561"><div class="ttname"><a href="classBmpFile.html#ae9cfdf64239e42b755e04a25c85bc561">BmpFile::rotate90</a></div><div class="ttdeci">void rotate90()</div><div class="ttdoc">Rotates image 90 degrees clockwise.</div><div class="ttdef"><b>Definition:</b> bmp_funcs.cpp:72</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

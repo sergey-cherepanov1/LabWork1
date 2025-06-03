@@ -17,7 +17,7 @@ $(OBJSDIR):
 	mkdir $(OBJSDIR)
 
 clean:
-	rm -rf $(OBJSDIR) $(RUN)
+	rm -rf $(OBJSDIR) $(RUN) 90.bmp 90blurred.bmp 270.bmp 270blurred.bmp
 
 cleanall:
 	rm $(OBJSDIR) $(RUN)

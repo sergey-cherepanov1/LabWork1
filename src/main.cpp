@@ -4,6 +4,17 @@
 
 #include "bmp.h"
 
+/**
+ * @brief Main program for BMP image processing demonstration
+ * @return int Returns 0 on success, -1 on error
+ * 
+ * @details This program demonstrates the functionality of the BmpFile class by:
+ * 1. Loading an input BMP image
+ * 2. Creating a copy of the original image
+ * 3. Applying 90° rotation and Gaussian blur to the first copy
+ * 4. Applying 270° rotation and Gaussian blur to the second copy
+ * 5. Saving all processed images with descriptive filenames
+ */
 int main()
 {
     // Create an object of BmpFile class to load the BMP image
